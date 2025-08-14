@@ -1,6 +1,7 @@
 # src/set_operations.py
 from typing import Any
 
+
 # ✅ Correct implementation
 def union(a: set[int], b: set[int]) -> set[int]:
     """
@@ -32,7 +33,7 @@ def intersection(a: set[int], b: set[int]) -> set[int]:
     # Return the intersection of the two sets
     # Note: This implementation is incorrect because it uses intersection instead of union
     # It should return the intersection of the two sets
-    return a | b
+    return a.intersection(b)
 
 # ❌ Incorrect implementation (repeats a)
 def cartesian_product(a: set[Any], b: set[Any]) -> set[tuple[Any,Any]]:
@@ -47,4 +48,4 @@ def cartesian_product(a: set[Any], b: set[Any]) -> set[tuple[Any,Any]]:
     # Return the Cartesian product of the two sets
     # Note: This implementation is incorrect because it uses the same set for both elements
     # It should use 'b' for the second element of the tuple
-    return {(x, y) for x in a for y in a}
+    return {(x, y) for x in a for y in b}
