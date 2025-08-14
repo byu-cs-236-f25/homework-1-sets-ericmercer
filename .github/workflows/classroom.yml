@@ -49,11 +49,40 @@ jobs:
         command: sh config_test.sh "test_intersection_integration_basic"
         timeout: 10
         max-score: 2
+    - name: test_cartesian_product_integration_ints_and_strings
+      id: test_cartesian_product_integration_ints_and_strings
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: test_cartesian_product_integration_ints_and_strings
+        setup-command: ''
+        command: sh config_test.sh "test_cartesian_product_integration_ints_and_strings"
+        timeout: 10
+        max-score: 2
+    - name: test_intersection_integration_with_empty
+      id: test_intersection_integration_with_empty
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: test_intersection_integration_with_empty
+        setup-command: ''
+        command: sh config_test.sh "test_intersection_integration_with_empty"
+        timeout: 10
+        max-score: 2
+    - name: test_cartesian_product_integration_ints_and_strings
+      id: test_cartesian_product_integration_ints_and_strings
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: test_cartesian_product_integration_ints_and_strings
+        setup-command: ''
+        command: sh config_test.sh "test_cartesian_product_integration_ints_and_strings"
+        timeout: 10
+        max-score: 2
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         TEST_UNION_INTEGRATION_DISJOINT_RESULTS: "${{steps.test_union_integration_disjoint.outputs.result}}"
         TEST_INTERSECTION_INTEGRATION_BASIC_RESULTS: "${{steps.test_intersection_integration_basic.outputs.result}}"
         TEST_UNION_INTEGRATION_WITH_EMPTY_RESULTS: "${{steps.test_union_integration_with_empty.outputs.result}}"
+        TEST_CARTESIAN_PRODUCT_INTEGRATION_INTS_AND_STRINGS_RESULTS: "${{steps.test_cartesian_product_integration_ints_and_strings.outputs.result}}"
+        TEST_INTERSECTION_INTEGRATION_WITH_EMPTY_RESULTS: "${{steps.test_intersection_integration_with_empty.outputs.result}}"
       with:
-        runners: test_union_integration_disjoint,test_intersection_integration_basic,test_union_integration_with_empty,test_intersection_integration_basic
+        runners: test_union_integration_disjoint,test_intersection_integration_basic,test_union_integration_with_empty,test_intersection_integration_basic,test_cartesian_product_integration_ints_and_strings,test_intersection_integration_with_empty,test_cartesian_product_integration_ints_and_strings
