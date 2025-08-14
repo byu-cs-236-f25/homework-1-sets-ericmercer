@@ -22,9 +22,38 @@ jobs:
         command: sh config_test.sh "test_union_integration_disjoint"
         timeout: 10
         max-score: 2
+    - name: test_intersection_integration_basic
+      id: test_intersection_integration_basic
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: test_intersection_integration_basic
+        setup-command: ''
+        command: sh config_test.sh "test_intersection_integration_basic"
+        timeout: 10
+        max-score: 2
+    - name: test_union_integration_with_empty
+      id: test_union_integration_with_empty
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: test_union_integration_with_empty
+        setup-command: ''
+        command: sh config_test.sh "test_union_integration_with_empty"
+        timeout: 10
+        max-score: 2
+    - name: test_intersection_integration_basic
+      id: test_intersection_integration_basic
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: test_intersection_integration_basic
+        setup-command: ''
+        command: sh config_test.sh "test_intersection_integration_basic"
+        timeout: 10
+        max-score: 2
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         TEST_UNION_INTEGRATION_DISJOINT_RESULTS: "${{steps.test_union_integration_disjoint.outputs.result}}"
+        TEST_INTERSECTION_INTEGRATION_BASIC_RESULTS: "${{steps.test_intersection_integration_basic.outputs.result}}"
+        TEST_UNION_INTEGRATION_WITH_EMPTY_RESULTS: "${{steps.test_union_integration_with_empty.outputs.result}}"
       with:
-        runners: test_union_integration_disjoint
+        runners: test_union_integration_disjoint,test_intersection_integration_basic,test_union_integration_with_empty,test_intersection_integration_basic
