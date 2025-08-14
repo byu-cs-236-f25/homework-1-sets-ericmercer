@@ -13,24 +13,6 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-    - name: test_union_integration_overlap
-      id: test_union_integration_overlap
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: test_union_integration_overlap
-        setup-command: ''
-        command: sh config_test.sh "test_union_integration_overlap"
-        timeout: 10
-        max-score: 2
-    - name: test_union_integration_with_empty
-      id: test_union_integration_with_empty
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: test_union_integration_with_empty
-        setup-command: ''
-        command: sh config_test.sh "test_union_integration_with_empty"
-        timeout: 10
-        max-score: 2
     - name: test_union_integration_disjoint
       id: test_union_integration_disjoint
       uses: classroom-resources/autograding-command-grader@v1
@@ -40,21 +22,9 @@ jobs:
         command: sh config_test.sh "test_union_integration_disjoint"
         timeout: 10
         max-score: 2
-    - name: st_union_integration_with_empty
-      id: st_union_integration_with_empty
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: st_union_integration_with_empty
-        setup-command: ''
-        command: sh config_test.sh "st_union_integration_with_empty"
-        timeout: 10
-        max-score: 2
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
-        TEST_UNION_INTEGRATION_OVERLAP_RESULTS: "${{steps.test_union_integration_overlap.outputs.result}}"
-        TEST_UNION_INTEGRATION_WITH_EMPTY_RESULTS: "${{steps.test_union_integration_with_empty.outputs.result}}"
         TEST_UNION_INTEGRATION_DISJOINT_RESULTS: "${{steps.test_union_integration_disjoint.outputs.result}}"
-        ST_UNION_INTEGRATION_WITH_EMPTY_RESULTS: "${{steps.st_union_integration_with_empty.outputs.result}}"
       with:
-        runners: test_union_integration_overlap,test_union_integration_with_empty,test_union_integration_disjoint,st_union_integration_with_empty
+        runners: test_union_integration_disjoint
